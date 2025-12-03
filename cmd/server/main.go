@@ -4,12 +4,16 @@ import (
 	"log"
 	"magic-link-auth/internal/config"
 	"magic-link-auth/internal/database"
+	"magic-link-auth/internal/models"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	config.LoadEnv()
 	database.ConnectMySQL()
+
+	database.DB.AutoMigrate(&models.User{}, &models.MagicToken{})
 
 	r := gin.Default()
 

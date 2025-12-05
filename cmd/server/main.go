@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"magic-link-auth/internal/auth"
 	"magic-link-auth/internal/config"
 	"magic-link-auth/internal/database"
 	"magic-link-auth/internal/models"
@@ -22,6 +23,8 @@ func main() {
 			"message": "pong",
 		})
 	})
+
+	auth.RegisterAuthRoutes(r)
 
 	log.Println("Server running on : 8080")
 	r.Run()
